@@ -18,11 +18,12 @@
         <div class="col-md-8">
             @if (count($posts)>0)
                 @foreach ($posts as $post)
+                    <br>
                     <div>
                         <a href="posts/{{$post->id}}">
                             <h4>{{$post->title}}</h4>
                         </a>
-                        <small>{{$post->post}}</small>
+                        <small class="text-justify">{{str_limit($post->post, $limit = 240, $end = '...')}}</small>
                     </div>
                 @endforeach
             @else

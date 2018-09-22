@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    <div class="text-centered">
+        {!! Form::open(['url'=>'search', 'method'=>'GET', 'class'=>'form-inline']) !!}
+            <div class="form-group">
+                {!! Form::text('keyWord','',['class'=>'form-control', 'placeholder'=>'Search By Key']) !!}
+                {!! Form::submit('Search',['class'=>'btn btn-primary']) !!}
+            </div>
+        {!! Form::close() !!}
+    </div>
     <div class="row">
         <div class="col-md-8">
             @if (count($posts)>0)
@@ -11,7 +19,9 @@
                         <a href="posts/{{$post->id}}">
                             <div class="panel-heading">{{$post->title}}</div>
                         </a>
-                        <div class="panel-body">{{$post->post}}</div>
+                        <div class="panel-body text-justify">
+                            {{str_limit($post->post, $limit = 240, $end = '...')}}
+                        </div>
                     </div>
                 @endforeach
             @else
