@@ -17,7 +17,7 @@ with open (user_entry_file, 'r', encoding="utf-8") as File:
 try:
     newmodel = gensim.models.Word2Vec.load(modelFile)
     newmodel.build_vocab(documents, update = True)
-    newmodel.train(documents, total_examples=len(sentences), epochs=10)
+    newmodel.train(documents, total_examples=len(documents), epochs=10)
     newmodel.save(modelFile)
     print('success')
 except:
